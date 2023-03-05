@@ -1,0 +1,12 @@
+[Unit]
+Description=TV Auto Power On/Off
+After=network.target auditd.service
+
+[Service]
+Type=simple
+User=bkg
+ExecStart=/home/bkg/tvmon/tvmon.py
+WorkingDirectory=/home/bkg/tvmon
+
+[Install]
+WantedBy=multi-user.target
