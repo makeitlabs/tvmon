@@ -5,6 +5,15 @@ import time,datetime
 import sys
 import requests
 ############
+
+"""
+tv-laser.lan.makeitlabs.com has address 10.25.6.28
+bkg@cgimisc:~/tvmon$ host tv-shopbot.lan.makeitlabs.com
+tv-shopbot.lan.makeitlabs.com has address 10.25.9.124
+"""
+SHOPBOT="10.25.9.124"
+LASER=="10.25.6.28"
+
 def on_connect(client, userdata, message,data):
     print ("CONNECTED",datetime.datetime.now())
     client.subscribe("#")
@@ -16,18 +25,22 @@ def on_disconnect(client, test,data):
 def tv_onoff(on=True):
     print ("Turn TV ",on,datetime.datetime.now())
     if on:
-        r = requests.post("http://10.25.6.28:8060/keypress/PowerOn","")
+        r = requests.post(f"http://{LASER}:8060/keypress/PowerOn","")
+        r = requests.post(f"http://{SHOPBOT}:8060/keypress/PowerOn","")
     else:
-        r = requests.post("http://10.25.6.28:8060/keypress/PowerOff","")
+        r = requests.post(f"http://{LASER}:8060/keypress/PowerOff","")
+        r = requests.post(f"http://{SHOPBOT}:8060/keypress/PowerOff","")
     print ("TV RETUREND",r.status_code,r.reason)
     sys.stdout.flush()
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
+    """
     print("message time " ,str(datetime.datetime.now()))
     print("message payload " ,msg)
     print("message topic=",message.topic)
     print("message qos=",message.qos)
     print("message retain flag=",message.retain)
+    """
     if (message.topic == "facility/alarm/system"):
         if msg == "armed":
             print ("ARMED")
