@@ -7,6 +7,8 @@ import requests
 ############
 
 """
+IMPORTANT: TVs REQUIRE IP addresses, not DNS names to be used!
+
 tv-laser.lan.makeitlabs.com has address 10.25.6.28
 bkg@cgimisc:~/tvmon$ host tv-shopbot.lan.makeitlabs.com
 tv-shopbot.lan.makeitlabs.com has address 10.25.9.124
