@@ -14,7 +14,7 @@ bkg@cgimisc:~/tvmon$ host tv-shopbot.lan.makeitlabs.com
 tv-shopbot.lan.makeitlabs.com has address 10.25.9.124
 """
 SHOPBOT="10.25.9.124"
-LASER=="10.25.6.28"
+LASER="10.25.6.28"
 
 def on_connect(client, userdata, message,data):
     print ("CONNECTED",datetime.datetime.now())
